@@ -1,0 +1,5 @@
+h1 My Apps
+ul
+  - @apps.each do |app|
+    li
+      a href="/apps/#{app["name"]}"= app["name"]
