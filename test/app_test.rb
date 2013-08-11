@@ -40,5 +40,6 @@ class AppTest < MiniTest::Unit::TestCase
 
     get "/apps/anything"
     assert_equal 302, last_response.status
+    assert_match %r{/auth/heroku$}, last_response.headers["Location"]
   end
 end
