@@ -15,6 +15,7 @@ def authorized!
   if session[:access_token]
     @access_token = session[:access_token]
   elsif production?
+    # initiate the OmniAuth authentication process
     redirect("/auth/heroku")
   else
     @access_token = "my-fake-access-token"
@@ -29,6 +30,7 @@ def api_request
   yield
 rescue Excon::Errors::Unauthorized
   session[:access_token] = nil
+  # access token probably expired; re-authenticate
   redirect("/auth/heroku")
 end
 
