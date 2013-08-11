@@ -14,12 +14,14 @@ class AppTest < MiniTest::Unit::TestCase
   def test_apps_list
     get "/apps"
     assert_equal 200, last_response.status
+    assert_match /example/, last_response.body
   end
 
   def test_apps_show
     # the stub will respond for any app
     get "/apps/anything"
     assert_equal 200, last_response.status
+    assert_match /example/, last_response.body
   end
 
   def test_bad_request_error
